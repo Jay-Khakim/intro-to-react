@@ -1,30 +1,23 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function App() {
-	return (
-		<div>
-			<div>Hello world!</div>
-			<CustomInput placeholder = {"name"} type={"text"}  />
-			<CustomInput placeholder = {"job title"} type={"text"}  />
-			<CustomInput placeholder = {"age"} type={"number"}  />
-			{/* <CustomInput data={"I am the another data"} /> */}
-		</div>
-	);
+function App(){
+  const [data, setData] = useState([]);
+  useEffect(() =>{
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then(response => response.json())
+    .then(data => setData(data))
+  }, [])
+
+  console.log(data)
+
+  return(
+    <div>
+      {data.map(item=>(
+        <div key={item.id}>
+          <p>{item.title}</p>
+        </div>
+      ))}
+    </div>
+  )
 }
-
-function CustomInput(props) {
-	const [value, setValue] = useState("");
-	const handleChange = event => {
-		setValue(event.target.value);
-	};
-	return (
-		<div>
-			<input type={props.type} value={value} onChange={handleChange} placeholder={props.placeholder}/>
-			<p>{props.data}</p>
-		</div>
-	);
-}
-
 export default App;

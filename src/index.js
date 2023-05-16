@@ -8,7 +8,7 @@ import Parent from './PracticeActivity';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Parent />
+    <App />
   </React.StrictMode>
 );
 
