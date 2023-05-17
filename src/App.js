@@ -9,7 +9,9 @@ function App(){
   }, [])
 
   console.log(data)
+  
 
+  
   return(
     <div>
       {data.map(item=>(
